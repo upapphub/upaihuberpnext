@@ -1,4 +1,4 @@
-import { lazy, useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { FrappeProvider } from 'frappe-react-sdk'
 import { Toaster } from '@/components/ui/sonner'
@@ -7,9 +7,11 @@ import BankStatementImporterContainer from '@/pages/BankStatementImporterContain
 import { TooltipProvider } from './components/ui/tooltip'
 import { LucideProvider } from 'lucide-react'
 import { ThemeProvider } from './components/ui/theme-provider'
+import { Loader2Icon } from 'lucide-react'
 
 const BankStatementImporter = lazy(() => import('@/pages/BankStatementImporter'))
 const ViewBankStatementImportLog = lazy(() => import('@/pages/ViewBankStatementImportLog'))
+const ArchitectureExplorer = lazy(() => import('@/pages/ArchitectureExplorer'))
 
 function App() {
 	useEffect(() => {
@@ -46,6 +48,15 @@ function App() {
 							<BrowserRouter basename={import.meta.env.VITE_BASE_NAME ? `/${import.meta.env.VITE_BASE_NAME}` : ''}>
 								<Routes>
 									<Route index element={<BankReconciliation />} />
+									<Route path="/architecture" element={
+										<Suspense fallback={
+											<div className="flex items-center justify-center p-16">
+												<Loader2Icon className="size-6 animate-spin text-muted-foreground" />
+											</div>
+										}>
+											<ArchitectureExplorer />
+										</Suspense>
+									} />
 									<Route path="/statement-importer" element={<BankStatementImporterContainer />}>
 										<Route index element={<BankStatementImporter />} />
 										<Route path=":id" element={<ViewBankStatementImportLog />} />

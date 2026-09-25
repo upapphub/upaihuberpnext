@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "build:architecture-index": "node ./build-architecture-index.mjs",
     "dev": "vite",
-    "build": "vite build --base=/assets/erpnext/banking/ && yarn copy-html-entry",
+    "build": "yarn build:architecture-index && vite build --base=/assets/erpnext/banking/ && yarn copy-html-entry",
     "lint": "eslint .",
     "preview": "vite preview",
     "copy-html-entry": "cp ../erpnext/public/banking/index.html ../erpnext/www/banking.html"

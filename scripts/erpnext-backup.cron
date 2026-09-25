@@ -1,0 +1,6 @@
+# Install: crontab /home/upoddar/upaihuberpnext/scripts/erpnext-backup.cron
+# Or merge with: (crontab -l 2>/dev/null | grep -v backup-erpnext; cat /home/upoddar/upaihuberpnext/scripts/erpnext-backup.cron) | crontab -
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+0 2 * * 0 /home/upoddar/upaihuberpnext/scripts/backup-erpnext.sh >> /home/upoddar/backups/erpnext/cron.log 2>&1

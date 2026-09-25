@@ -1,9 +1,17 @@
 import { readFileSync } from 'node:fs';
 
-const common_site_config = JSON.parse(
-	readFileSync(new URL('../../../sites/common_site_config.json', import.meta.url), 'utf8')
-) as { webserver_port: string | number };
-const { webserver_port } = common_site_config;
+function getWebserverPort() {
+	try {
+		const common_site_config = JSON.parse(
+			readFileSync(new URL('../../../sites/common_site_config.json', import.meta.url), 'utf8')
+		) as { webserver_port: string | number };
+		return common_site_config.webserver_port;
+	} catch {
+		return 8000;
+	}
+}
+
+const webserver_port = getWebserverPort();
 
 export default {
 	'^/(app|api|assets|files|private)': {

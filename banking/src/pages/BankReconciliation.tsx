@@ -17,6 +17,7 @@ import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTi
 import { Button } from "@/components/ui/button"
 import { useAtomValue } from "jotai"
 import { selectedBankAccountAtom } from "@/components/features/BankReconciliation/bankRecAtoms"
+import { Link } from "react-router-dom"
 
 const BankReconciliationStatement = lazy(() => import('@/components/features/BankReconciliation/BankReconciliationStatement'))
 const BankTransactions = lazy(() => import('@/components/features/BankReconciliation/BankTransactionList'))
@@ -64,6 +65,11 @@ const BankReconciliation = () => {
                             <CompanySelector />
                         </div>
                         <div className="flex items-center gap-2">
+                            <Button asChild variant="subtle">
+                                <Link to="/architecture">
+                                    {_("Architecture")}
+                                </Link>
+                            </Button>
                             <TooltipProvider>
                                 <Settings />
                                 <ActionLog />

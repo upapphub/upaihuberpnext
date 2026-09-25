@@ -23,3 +23,7 @@ node_modules/
 # Banking SPA
 erpnext/public/banking
 erpnext/www/banking.html
+
+# Local Docker secrets (copy from .env.example)
+.env
+backups/
